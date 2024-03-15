@@ -1,4 +1,4 @@
-import { calculateMonthlyNationalInsurance } from './NationalInsurance.js';
+import { calculateMonthlyNationalInsurance } from './nationalInsurance.js';
 
 // DOM elements
 const btnCalculate = document.querySelector('.btn-calculate');
