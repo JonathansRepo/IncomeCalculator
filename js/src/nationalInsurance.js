@@ -9,13 +9,15 @@ const calculateMonthlyNationalInsurance = function (grossAnnualIncome) {
   }
 
   if (grossAnnualIncome <= upperThreshold)
-    return ((grossAnnualIncome - lowerThreshold) * lowerRate) / 12;
+    return +(((grossAnnualIncome - lowerThreshold) * lowerRate) / 12).toFixed(
+      2
+    );
 
-  return (
+  return +(
     ((upperThreshold - lowerThreshold) * lowerRate +
       (grossAnnualIncome - upperThreshold) * upperRate) /
     12
-  );
+  ).toFixed(2);
 };
 
 export { calculateMonthlyNationalInsurance };
