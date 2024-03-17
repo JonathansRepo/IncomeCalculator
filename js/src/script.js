@@ -1,4 +1,5 @@
 import { calculateMonthlyNationalInsurance } from './nationalInsurance.js';
+import { calculateIncomeTax } from './incomeTax.js';
 
 // DOM elements
 const btnCalculate = document.querySelector('.btn-calculate');
@@ -10,7 +11,9 @@ const monthlyGrossIncomeLabel = document.querySelector('.monthly-gross-income');
 const monthlyNationalInsuranceLabel = document.querySelector(
   '.monthly-national-insurance'
 );
+const monthlyIncomeTaxLabel = document.querySelector('.monthly-income-tax');
 
+// Validations
 const inputsArevalid = function () {
   if (isNaN(inputAnnualIncome.value) && isNaN(parseFloat(inputAnnualIncome))) {
     alert('Please enter a valid Annual Income');
@@ -53,4 +56,6 @@ btnCalculate.addEventListener('click', function (event) {
     calculateMonthlyNationalInsurance(annualIncome).toFixed(2);
 
   monthlyNationalInsuranceLabel.textContent = `Your monthly national insurance is: £${monthlyNationalInsurance}`;
+
+  const monthlyIncomeTax = calculateIncomeTax(grossMonthlyIncome).toFixed(2);
 });

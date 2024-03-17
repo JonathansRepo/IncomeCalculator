@@ -6,17 +6,31 @@ const additionalThresholdStart = 125141;
 const additionalRate = 0.45;
 const personalAllowancwAdjustmentThreshold = 100000;
 
+const isAbovePersonalAllowanceBelowHigherRate = function (grossAnnualIncome) {
+  return (
+    grossAnnualIncome > personalAllowance &&
+    grossAnnualIncome < higherRateThresholdStart
+  );
+};
+
+const isAboveHigherBelowAdditionalRate = function (grossAnnualIncome) {
+  return (
+    grossAnnualIncome >= higherRateThresholdStart &&
+    grossAnnualIncome < additionalThresholdStart
+  );
+};
+
+const isAdditionalRate = function (grossAnnualIncome) {
+  return grossAnnualIncome >= additionalThresholdStart;
+};
+
 const calculateIncomeTax = function (grossAnnualIncome) {
   if (grossAnnualIncome <= personalAllowance) return 0;
 
-  if (
-    grossAnnualIncome > personalAllowance &&
-    grossAnnualIncome < higherRateThresholdStart
-  ) {
+  if (isAbovePersonalAllowanceBelowHigherRate(grossAnnualIncome))
     return (grossAnnualIncome - personalAllowance) * basicRate;
-  }
 
-  if (grossAnnualIncome >= higherRateThresholdStart) {
+  if (isAboveHigherBelowAdditionalRate(grossAnnualIncome)) {
     const amountOverHigherRate =
       grossAnnualIncome - (higherRateThresholdStart - 1);
     const higherRateTax = amountOverHigherRate * higherRate;
