@@ -34,7 +34,7 @@ bld/
 
 # Node Modules
 [Nn]ode_modules/
-package.lock.json
+package-lock.json
 
 # Parcel cache
 .parcel-cache/

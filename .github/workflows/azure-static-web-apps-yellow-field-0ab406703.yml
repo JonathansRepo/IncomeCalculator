@@ -20,19 +20,6 @@ jobs:
           submodules: true
           lfs: false
 
-      # Add a step to install Node.js and Parcel
-      - name: Install Node.js and Parcel
-        uses: actions/setup-node@v2
-        with:
-          node-version: 20
-
-      # Add a step to install dependencies
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build with Parcel
-        run: npm run build
-
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
