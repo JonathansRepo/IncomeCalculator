@@ -24,7 +24,7 @@ jobs:
       - name: Install Node.js and Parcel
         uses: actions/setup-node@v2
         with:
-          node-version: 14
+          node-version: 20
 
       # Add a step to install dependencies
       - name: Install dependencies
