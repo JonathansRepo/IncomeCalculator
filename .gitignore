@@ -34,6 +34,10 @@ bld/
 
 # Node Modules
 [Nn]ode_modules/
+package.lock.json
+
+# Parcel cache
+.parcel-cache/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
