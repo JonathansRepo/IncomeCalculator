@@ -1,22 +1,23 @@
+import { lowerNIThreshold } from './config';
+import { lowerNIRate } from './config';
+import { upperNIThreshold } from './config';
+import { upperNIRate } from './config';
+
 export class NationalInsurance {
   calculateMonthlyNationalInsurance = function (grossAnnualIncome) {
-    const lowerThreshold = 12570;
-    const lowerRate = 0.1;
-    const upperThreshold = 50270;
-    const upperRate = 0.2;
-
-    if (grossAnnualIncome <= lowerThreshold) {
+    if (grossAnnualIncome <= lowerNIThreshold) {
       return 0;
     }
 
-    if (grossAnnualIncome <= upperThreshold)
-      return +(((grossAnnualIncome - lowerThreshold) * lowerRate) / 12).toFixed(
-        2
-      );
+    if (grossAnnualIncome <= upperNIThreshold)
+      return +(
+        ((grossAnnualIncome - lowerNIThreshold) * lowerNIRate) /
+        12
+      ).toFixed(2);
 
     return +(
-      ((upperThreshold - lowerThreshold) * lowerRate +
-        (grossAnnualIncome - upperThreshold) * upperRate) /
+      ((upperNIThreshold - lowerNIThreshold) * lowerNIRate +
+        (grossAnnualIncome - upperNIThreshold) * upperNIRate) /
       12
     ).toFixed(2);
   };

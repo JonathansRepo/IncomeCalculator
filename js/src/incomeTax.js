@@ -1,12 +1,12 @@
-export class IncomeTax {
-  #personalAllowance = 12570;
-  #basicRate = 0.2;
-  #higherRateThresholdStart = 50271;
-  #higherRate = 0.4;
-  #additionalThresholdStart = 125141;
-  #additionalRate = 0.45;
-  #personalAllowanceAdjustmentThreshold = 100000;
+import { personalAllowance } from './config';
+import { basicRate } from './config';
+import { higherRateThresholdStart } from './config';
+import { higherRate } from './config';
+import { additionalThresholdStart } from './config';
+import { additionalRate } from './config';
+import { personalAllowanceAdjustmentThreshold } from './config';
 
+export class IncomeTax {
   // There are three tax rates:
   // Basic = 20%
   // Higher - 40%
@@ -15,20 +15,20 @@ export class IncomeTax {
   // What type of tax payer is this?
   #isBasicRate = function (grossAnnualIncome) {
     return (
-      grossAnnualIncome > this.#personalAllowance &&
-      grossAnnualIncome < this.#higherRateThresholdStart
+      grossAnnualIncome > personalAllowance &&
+      grossAnnualIncome < higherRateThresholdStart
     );
   };
 
   #isHigherRate = function (grossAnnualIncome) {
     return (
-      grossAnnualIncome >= this.#higherRateThresholdStart &&
-      grossAnnualIncome < this.#additionalThresholdStart
+      grossAnnualIncome >= higherRateThresholdStart &&
+      grossAnnualIncome < additionalThresholdStart
     );
   };
 
   #isAdditionalRate = function (grossAnnualIncome) {
-    return grossAnnualIncome >= this.#additionalThresholdStart;
+    return grossAnnualIncome >= additionalThresholdStart;
   };
 
   //Tax calculations
@@ -36,7 +36,7 @@ export class IncomeTax {
     grossAmount,
     adjustedAllowance
   ) {
-    return (grossAmount - adjustedAllowance) * this.#basicRate;
+    return (grossAmount - adjustedAllowance) * basicRate;
   };
 
   #calculateAboveHigherBelowAdditionalAdjusted = function (grossAnnualIncome) {
@@ -44,13 +44,13 @@ export class IncomeTax {
     //When income is over £100K, for every £2 the personal allowance is reduced
     // by £1
 
-    let adjustedPersonalAllowance = this.#personalAllowance;
-    let adjustedHigherRateStart = this.#higherRateThresholdStart;
+    let adjustedPersonalAllowance = personalAllowance;
+    let adjustedHigherRateStart = higherRateThresholdStart;
 
-    if (grossAnnualIncome > this.#personalAllowanceAdjustmentThreshold) {
+    if (grossAnnualIncome > personalAllowanceAdjustmentThreshold) {
       // Remember for every £2 the personal allowance is reduced by £1
       const amountOver100KHalved =
-        (grossAnnualIncome - this.#personalAllowanceAdjustmentThreshold) / 2;
+        (grossAnnualIncome - personalAllowanceAdjustmentThreshold) / 2;
       adjustedPersonalAllowance -= amountOver100KHalved;
 
       adjustedHigherRateStart -= amountOver100KHalved;
@@ -63,21 +63,21 @@ export class IncomeTax {
 
     const amountOverHigherRate =
       grossAnnualIncome - (adjustedHigherRateStart - 1);
-    const higherRateTax = amountOverHigherRate * this.#higherRate;
+    const higherRateTax = amountOverHigherRate * higherRate;
 
     return higherRateTax + lowerRateTax;
   };
 
   #calculateAboveAdditionalThreshold = function (grossAnnualIncome) {
     const amountOverAdditionalThreshold =
-      grossAnnualIncome - (this.#additionalThresholdStart - 1);
+      grossAnnualIncome - (additionalThresholdStart - 1);
     const taxUnderAdditionalThreshold =
       this.#calculateAboveHigherBelowAdditionalAdjusted(
-        this.#additionalThresholdStart - 1
+        additionalThresholdStart - 1
       );
 
     const taxOverAdditionalThreshold =
-      amountOverAdditionalThreshold * this.#additionalRate +
+      amountOverAdditionalThreshold * additionalRate +
       taxUnderAdditionalThreshold;
 
     return taxOverAdditionalThreshold;
@@ -86,13 +86,13 @@ export class IncomeTax {
   //Main function
   calculateAnnualIncomeTax = function (grossAnnualIncome) {
     //Shouldn't pay any tax
-    if (grossAnnualIncome <= this.#personalAllowance) return 0;
+    if (grossAnnualIncome <= personalAllowance) return 0;
 
     //Above 12571 aand below 50271
     if (this.#isBasicRate(grossAnnualIncome))
       return this.#calculateAbovePersonalBelowAdditional(
         grossAnnualIncome,
-        this.#personalAllowance
+        personalAllowance
       );
 
     //Above 150000
