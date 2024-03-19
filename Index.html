@@ -4,29 +4,68 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script type="module" src="js/src/script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Imprima&family=Inter:wght@100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Imprima&family=Inter:wght@100..900&family=Mako&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/style.css" />
     <title>Document</title>
   </head>
   <body>
-    <heading>
-      <h1>Calculating NI</h1>
-    </heading>
-    <form>
-      <label>Anuual Gross Income</label>
-      <input type="text" class="input-gross-income" />
-      <label>Monthly Pension Contribution</label>
-      <input type="text" class="input-pension-contribution" />
-      <button type="submit" class="btn-calculate">Calculate</button>
-    </form>
-    <section>
+    <header class="heading">
+      <h1>Income Calculator</h1>
+      <img src="img/calculator.jpg" alt="calculator" class="calculator-image" />
+    </header>
+    <section class="instructions">
+      <h2>Instructions</h2>
+      <p>
+        This calculator will help you to calculate your monthly gross income,
+        income tax, national insurance and net income based on your annual gross
+        income and monthly pension contribution.
+      </p>
+      <p>
+        <ul class="instructions-list">
+          <li>Enter your annual gross income</li>
+          <li>Enter your monthly pension contribution</li>
+        </ul>
+      </p>
+    </section>
+    <section class="calculate">
+      <div class="input-form">
+        <h2 class="calculate-title">Calculate</h2>
+        <form class="input-controls">
+          <label>Annual Gross Income</label>
+          <input type="text" class="input-gross-income" />
+          <label>Monthly Pension Contribution</label>
+          <input type="text" class="input-pension-contribution" />
+          <button type="submit" class="btn-calculate">Calculate</button>
+        </form>        
+      </div>
+    </section >
+    <section class="results">
       <h2>Results</h2>
-      <p class="monthly-gross-income">
+      <p class="monthly-gross-income result">
         Your monthly gross income is: something
       </p>
-      <p class="monthly-income-tax">Your monthly income tax is: something</p>
-      <p class="monthly-national-insurance">
+      <p class="monthly-income-tax result">
+        Your monthly income tax is: something
+      </p>
+      <p class="monthly-national-insurance result">
         Your monthly national insurance is: something
       </p>
-      <p class="monthly-net-income">Youe monthly net income is: something</p>
+      <p class="monthly-net-income result">
+        Youe monthly net income is: something
+      </p>
     </section>
   </body>
 </html>
