@@ -2,18 +2,25 @@ import { NationalInsurance } from './nationalInsurance.js';
 import { IncomeTax } from './incomeTax.js';
 
 // DOM elements
-const btnCalculate = document.querySelector('.btn-calculate');
+// Input form
 const inputAnnualIncome = document.querySelector('.input-gross-income');
 const pensionMonthlyContribution = document.querySelector(
   '.input-pension-contribution'
 );
-const monthlyGrossIncomeLabel = document.querySelector('.monthly-gross-income');
-const monthlyNationalInsuranceLabel = document.querySelector(
-  '.monthly-national-insurance'
-);
-const monthlyIncomeTaxLabel = document.querySelector('.monthly-income-tax');
-const monthlyNetLabel = document.querySelector('.monthly-net-income');
+const btnCalculate = document.querySelector('.btn-calculate');
 
+// Results container
+const resultsContainer = document.querySelector('.results-container');
+const monthlyGrossIncomeResult = document.querySelector(
+  '.monthly-gross-income-result'
+);
+const monthlyIncomeTaxResult = document.querySelector(
+  '.monthly-income-tax-result'
+);
+const monthlyNIResult = document.querySelector('.monthly-NI-result');
+const monthlyNetResult = document.querySelector('.monthly-net-result');
+
+// Instances
 const nationalInsurance = new NationalInsurance();
 const incomeTax = new IncomeTax();
 
@@ -24,8 +31,8 @@ const inputsArevalid = function () {
     return false;
   }
 
-  if (+inputAnnualIncome.value < 0) {
-    alert('Please enter a valid Annual Income');
+  if (+inputAnnualIncome.value <= 0) {
+    alert('Annual income must be a number greater than 0');
     return false;
   }
 
@@ -35,7 +42,7 @@ const inputsArevalid = function () {
   }
 
   if (+pensionMonthlyContribution.value < 0) {
-    alert('Please enter a valid Monthly Pension Contribution');
+    alert('Monthly Pension Contribution must not be less than 0');
     return false;
   }
 
@@ -52,24 +59,27 @@ btnCalculate.addEventListener('click', function (event) {
   const monthlyPension = +pensionMonthlyContribution.value;
   const grossMonthlyIncome = +(annualIncome / 12).toFixed(2);
 
-  monthlyGrossIncomeLabel.textContent = `Your monthly gross income is: £${grossMonthlyIncome}`;
-
   const taxableIncome = +(annualIncome - monthlyPension * 12).toFixed(2);
 
   const monthlyNationalInsurance = nationalInsurance
     .calculateMonthlyNationalInsurance(annualIncome)
     .toFixed(2);
 
-  monthlyNationalInsuranceLabel.textContent = `Your monthly national insurance is: £${monthlyNationalInsurance}`;
+  monthlyNIResult.textContent = `£${monthlyNationalInsurance}`;
+
+  monthlyGrossIncomeResult.textContent = `£${grossMonthlyIncome}`;
 
   const monthlyIncomeTax = (
     incomeTax.calculateAnnualIncomeTax(taxableIncome) / 12
   ).toFixed(2);
-  monthlyIncomeTaxLabel.textContent = `Your monthly income tax is: £${monthlyIncomeTax}`;
 
-  monthlyNetLabel.textContent = `Your monthly net income is: £${(
+  monthlyIncomeTaxResult.textContent = `£${monthlyIncomeTax}`;
+
+  monthlyNetResult.textContent = `£${(
     grossMonthlyIncome -
     monthlyNationalInsurance -
     monthlyIncomeTax
-  ).toFixed(2)}`;
+  ).toFixed(0)}`;
+
+  resultsContainer.classList.remove('hidden');
 });

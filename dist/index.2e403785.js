@@ -636,42 +636,16 @@ btnCalculate.addEventListener("click", function(event) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "NationalInsurance", ()=>NationalInsurance);
-var _config = require("./config");
+var _configJs = require("./config.js");
 class NationalInsurance {
     calculateMonthlyNationalInsurance = function(grossAnnualIncome) {
-        if (grossAnnualIncome <= (0, _config.lowerNIThreshold)) return 0;
-        if (grossAnnualIncome <= (0, _config.upperNIThreshold)) return +((grossAnnualIncome - (0, _config.lowerNIThreshold)) * (0, _config.lowerNIRate) / 12).toFixed(2);
-        return +((((0, _config.upperNIThreshold) - (0, _config.lowerNIThreshold)) * (0, _config.lowerNIRate) + (grossAnnualIncome - (0, _config.upperNIThreshold)) * (0, _config.upperNIRate)) / 12).toFixed(2);
+        if (grossAnnualIncome <= (0, _configJs.lowerNIThreshold)) return 0;
+        if (grossAnnualIncome <= (0, _configJs.upperNIThreshold)) return +((grossAnnualIncome - (0, _configJs.lowerNIThreshold)) * (0, _configJs.lowerNIRate) / 12).toFixed(2);
+        return +((((0, _configJs.upperNIThreshold) - (0, _configJs.lowerNIThreshold)) * (0, _configJs.lowerNIRate) + (grossAnnualIncome - (0, _configJs.upperNIThreshold)) * (0, _configJs.upperNIRate)) / 12).toFixed(2);
     };
 }
 
-},{"./config":"aaLIk","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"aaLIk":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "lowerNIThreshold", ()=>lowerNIThreshold);
-parcelHelpers.export(exports, "lowerNIRate", ()=>lowerNIRate);
-parcelHelpers.export(exports, "upperNIThreshold", ()=>upperNIThreshold);
-parcelHelpers.export(exports, "upperNIRate", ()=>upperNIRate);
-parcelHelpers.export(exports, "personalAllowance", ()=>personalAllowance);
-parcelHelpers.export(exports, "basicRate", ()=>basicRate);
-parcelHelpers.export(exports, "higherRateThresholdStart", ()=>higherRateThresholdStart);
-parcelHelpers.export(exports, "higherRate", ()=>higherRate);
-parcelHelpers.export(exports, "additionalThresholdStart", ()=>additionalThresholdStart);
-parcelHelpers.export(exports, "additionalRate", ()=>additionalRate);
-parcelHelpers.export(exports, "personalAllowanceAdjustmentThreshold", ()=>personalAllowanceAdjustmentThreshold);
-const lowerNIThreshold = 12570;
-const lowerNIRate = 0.1;
-const upperNIThreshold = 50270;
-const upperNIRate = 0.2;
-const personalAllowance = 12570;
-const basicRate = 0.2;
-const higherRateThresholdStart = 50271;
-const higherRate = 0.4;
-const additionalThresholdStart = 125141;
-const additionalRate = 0.45;
-const personalAllowanceAdjustmentThreshold = 100000;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./config.js":"aaLIk"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -701,11 +675,37 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"c0hW1":[function(require,module,exports) {
+},{}],"aaLIk":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "lowerNIThreshold", ()=>lowerNIThreshold);
+parcelHelpers.export(exports, "lowerNIRate", ()=>lowerNIRate);
+parcelHelpers.export(exports, "upperNIThreshold", ()=>upperNIThreshold);
+parcelHelpers.export(exports, "upperNIRate", ()=>upperNIRate);
+parcelHelpers.export(exports, "personalAllowance", ()=>personalAllowance);
+parcelHelpers.export(exports, "basicRate", ()=>basicRate);
+parcelHelpers.export(exports, "higherRateThresholdStart", ()=>higherRateThresholdStart);
+parcelHelpers.export(exports, "higherRate", ()=>higherRate);
+parcelHelpers.export(exports, "additionalThresholdStart", ()=>additionalThresholdStart);
+parcelHelpers.export(exports, "additionalRate", ()=>additionalRate);
+parcelHelpers.export(exports, "personalAllowanceAdjustmentThreshold", ()=>personalAllowanceAdjustmentThreshold);
+const lowerNIThreshold = 12570;
+const lowerNIRate = 0.1;
+const upperNIThreshold = 50270;
+const upperNIRate = 0.2;
+const personalAllowance = 12570;
+const basicRate = 0.2;
+const higherRateThresholdStart = 50271;
+const higherRate = 0.4;
+const additionalThresholdStart = 125141;
+const additionalRate = 0.45;
+const personalAllowanceAdjustmentThreshold = 100000;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"c0hW1":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "IncomeTax", ()=>IncomeTax);
-var _config = require("./config");
+var _configJs = require("./config.js");
 class IncomeTax {
     // There are three tax rates:
     // Basic = 20%
@@ -713,47 +713,47 @@ class IncomeTax {
     // Additional = 45%
     // What type of tax payer is this?
     #isBasicRate = function(grossAnnualIncome) {
-        return grossAnnualIncome > (0, _config.personalAllowance) && grossAnnualIncome < (0, _config.higherRateThresholdStart);
+        return grossAnnualIncome > (0, _configJs.personalAllowance) && grossAnnualIncome < (0, _configJs.higherRateThresholdStart);
     };
     #isHigherRate = function(grossAnnualIncome) {
-        return grossAnnualIncome >= (0, _config.higherRateThresholdStart) && grossAnnualIncome < (0, _config.additionalThresholdStart);
+        return grossAnnualIncome >= (0, _configJs.higherRateThresholdStart) && grossAnnualIncome < (0, _configJs.additionalThresholdStart);
     };
     #isAdditionalRate = function(grossAnnualIncome) {
-        return grossAnnualIncome >= (0, _config.additionalThresholdStart);
+        return grossAnnualIncome >= (0, _configJs.additionalThresholdStart);
     };
     //Tax calculations
     #calculateAbovePersonalBelowAdditional = function(grossAmount, adjustedAllowance) {
-        return (grossAmount - adjustedAllowance) * (0, _config.basicRate);
+        return (grossAmount - adjustedAllowance) * (0, _configJs.basicRate);
     };
     #calculateAboveHigherBelowAdditionalAdjusted = function(grossAnnualIncome) {
         //Need to add a modification to the lower threshold
         //When income is over £100K, for every £2 the personal allowance is reduced
         // by £1
-        let adjustedPersonalAllowance = (0, _config.personalAllowance);
-        let adjustedHigherRateStart = (0, _config.higherRateThresholdStart);
-        if (grossAnnualIncome > (0, _config.personalAllowanceAdjustmentThreshold)) {
+        let adjustedPersonalAllowance = (0, _configJs.personalAllowance);
+        let adjustedHigherRateStart = (0, _configJs.higherRateThresholdStart);
+        if (grossAnnualIncome > (0, _configJs.personalAllowanceAdjustmentThreshold)) {
             // Remember for every £2 the personal allowance is reduced by £1
-            const amountOver100KHalved = (grossAnnualIncome - (0, _config.personalAllowanceAdjustmentThreshold)) / 2;
+            const amountOver100KHalved = (grossAnnualIncome - (0, _configJs.personalAllowanceAdjustmentThreshold)) / 2;
             adjustedPersonalAllowance -= amountOver100KHalved;
             adjustedHigherRateStart -= amountOver100KHalved;
         }
         const lowerRateTax = this.#calculateAbovePersonalBelowAdditional(adjustedHigherRateStart, adjustedPersonalAllowance < 0 ? 0 : adjustedPersonalAllowance);
         const amountOverHigherRate = grossAnnualIncome - (adjustedHigherRateStart - 1);
-        const higherRateTax = amountOverHigherRate * (0, _config.higherRate);
+        const higherRateTax = amountOverHigherRate * (0, _configJs.higherRate);
         return higherRateTax + lowerRateTax;
     };
     #calculateAboveAdditionalThreshold = function(grossAnnualIncome) {
-        const amountOverAdditionalThreshold = grossAnnualIncome - ((0, _config.additionalThresholdStart) - 1);
-        const taxUnderAdditionalThreshold = this.#calculateAboveHigherBelowAdditionalAdjusted((0, _config.additionalThresholdStart) - 1);
-        const taxOverAdditionalThreshold = amountOverAdditionalThreshold * (0, _config.additionalRate) + taxUnderAdditionalThreshold;
+        const amountOverAdditionalThreshold = grossAnnualIncome - ((0, _configJs.additionalThresholdStart) - 1);
+        const taxUnderAdditionalThreshold = this.#calculateAboveHigherBelowAdditionalAdjusted((0, _configJs.additionalThresholdStart) - 1);
+        const taxOverAdditionalThreshold = amountOverAdditionalThreshold * (0, _configJs.additionalRate) + taxUnderAdditionalThreshold;
         return taxOverAdditionalThreshold;
     };
     //Main function
     calculateAnnualIncomeTax = function(grossAnnualIncome) {
         //Shouldn't pay any tax
-        if (grossAnnualIncome <= (0, _config.personalAllowance)) return 0;
+        if (grossAnnualIncome <= (0, _configJs.personalAllowance)) return 0;
         //Above 12571 aand below 50271
-        if (this.#isBasicRate(grossAnnualIncome)) return this.#calculateAbovePersonalBelowAdditional(grossAnnualIncome, (0, _config.personalAllowance));
+        if (this.#isBasicRate(grossAnnualIncome)) return this.#calculateAbovePersonalBelowAdditional(grossAnnualIncome, (0, _configJs.personalAllowance));
         //Above 150000
         if (this.#isAdditionalRate(grossAnnualIncome)) return this.#calculateAboveAdditionalThreshold(grossAnnualIncome);
         //above 50271 and below 150000
@@ -761,6 +761,6 @@ class IncomeTax {
     };
 }
 
-},{"./config":"aaLIk","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["d8AvX","1LSgd"], "1LSgd", "parcelRequirecb5d")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./config.js":"aaLIk"}]},["d8AvX","1LSgd"], "1LSgd", "parcelRequirecb5d")
 
 //# sourceMappingURL=index.2e403785.js.map
