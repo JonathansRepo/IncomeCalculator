@@ -99,7 +99,7 @@ h1 {
   background-color: rgb(24, 100, 171, 0.9);
   border-radius: 10px;
   color: white;
-  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.15);
 }
 
 .input-controls {
@@ -161,4 +161,24 @@ p {
 .hidden {
   visibility: hidden;
   opacity: 0;
+}
+
+.monthly-gross-income-result {
+  color: #1864ab;
+  justify-self: end;
+}
+
+.monthly-income-tax-result {
+  color: #c92a2a;
+  justify-self: end;
+}
+
+.monthly-NI-result {
+  color: #c92a2a;
+  justify-self: end;
+}
+
+.monthly-net-result {
+  color: #37b24d;
+  justify-self: end;
 }

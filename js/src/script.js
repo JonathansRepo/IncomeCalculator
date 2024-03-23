@@ -49,6 +49,15 @@ const inputsArevalid = function () {
   return true;
 };
 
+const formatMoney = function (value, locale, currency) {
+  return new Intl.NumberFormat('en-GB', {
+    style: 'currency',
+    currency: 'GBP',
+    maximumFractionDigits: 0,
+    minimumFractionDigits: 0,
+  }).format(value);
+};
+
 //Event listening
 btnCalculate.addEventListener('click', function (event) {
   event.preventDefault();
@@ -57,29 +66,31 @@ btnCalculate.addEventListener('click', function (event) {
 
   const annualIncome = +inputAnnualIncome.value;
   const monthlyPension = +pensionMonthlyContribution.value;
-  const grossMonthlyIncome = +(annualIncome / 12).toFixed(2);
+  const grossMonthlyIncome = +(annualIncome / 12)
+    .toFixed(0)
+    .toLocaleString('en-UK');
 
-  const taxableIncome = +(annualIncome - monthlyPension * 12).toFixed(2);
+  const taxableIncome = +(annualIncome - monthlyPension * 12).toFixed(0);
+
+  monthlyGrossIncomeResult.textContent = `${formatMoney(grossMonthlyIncome)}`;
 
   const monthlyNationalInsurance = nationalInsurance
     .calculateMonthlyNationalInsurance(annualIncome)
-    .toFixed(2);
+    .toFixed(0);
 
-  monthlyNIResult.textContent = `£${monthlyNationalInsurance}`;
-
-  monthlyGrossIncomeResult.textContent = `£${grossMonthlyIncome}`;
+  monthlyNIResult.textContent = `${formatMoney(monthlyNationalInsurance)}`;
 
   const monthlyIncomeTax = (
     incomeTax.calculateAnnualIncomeTax(taxableIncome) / 12
-  ).toFixed(2);
+  ).toFixed(0);
 
-  monthlyIncomeTaxResult.textContent = `£${monthlyIncomeTax}`;
+  monthlyIncomeTaxResult.textContent = `${formatMoney(monthlyIncomeTax)}`;
 
-  monthlyNetResult.textContent = `£${(
-    grossMonthlyIncome -
-    monthlyNationalInsurance -
-    monthlyIncomeTax
-  ).toFixed(0)}`;
+  monthlyNetResult.textContent = `${formatMoney(
+    (grossMonthlyIncome - monthlyNationalInsurance - monthlyIncomeTax).toFixed(
+      0
+    )
+  )}`;
 
   resultsContainer.classList.remove('hidden');
 });
