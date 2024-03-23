@@ -62,35 +62,56 @@ const formatMoney = function (value, locale, currency) {
 btnCalculate.addEventListener('click', function (event) {
   event.preventDefault();
 
+  // 1. Check inputs
   if (!inputsArevalid()) return;
 
+  // 2. Calculate totals
+  const totals = calculateTotals();
+
+  // 3. Display results
+  displayResults(...totals);
+});
+
+const calculateTotals = function () {
   const annualIncome = +inputAnnualIncome.value;
   const monthlyPension = +pensionMonthlyContribution.value;
-  const grossMonthlyIncome = +(annualIncome / 12)
-    .toFixed(0)
-    .toLocaleString('en-UK');
 
-  const taxableIncome = +(annualIncome - monthlyPension * 12).toFixed(0);
+  const grossMonthlyIncome = +(annualIncome / 12);
 
+  const taxableAnnualIncome = +(annualIncome - monthlyPension * 12);
+
+  const monthlyNationalInsurance =
+    calculateMonthlyNationalInsurance(annualIncome);
+
+  const monthlyIncomeTax = calculateMonthlyIncomeTax(taxableAnnualIncome);
+
+  return [
+    grossMonthlyIncome,
+    monthlyNationalInsurance,
+    monthlyIncomeTax,
+    monthlyPension,
+  ];
+};
+
+const displayResults = function (
+  grossMonthlyIncome,
+  monthlyNI,
+  monthlyTax,
+  monthlyPension
+) {
   monthlyGrossIncomeResult.textContent = `${formatMoney(grossMonthlyIncome)}`;
-
-  const monthlyNationalInsurance = nationalInsurance
-    .calculateMonthlyNationalInsurance(annualIncome)
-    .toFixed(0);
-
-  monthlyNIResult.textContent = `${formatMoney(monthlyNationalInsurance)}`;
-
-  const monthlyIncomeTax = (
-    incomeTax.calculateAnnualIncomeTax(taxableIncome) / 12
-  ).toFixed(0);
-
-  monthlyIncomeTaxResult.textContent = `${formatMoney(monthlyIncomeTax)}`;
-
+  monthlyNIResult.textContent = `${formatMoney(monthlyNI)}`;
+  monthlyIncomeTaxResult.textContent = `${formatMoney(monthlyTax)}`;
   monthlyNetResult.textContent = `${formatMoney(
-    (grossMonthlyIncome - monthlyNationalInsurance - monthlyIncomeTax).toFixed(
-      0
-    )
+    grossMonthlyIncome - monthlyNI - monthlyTax - monthlyPension
   )}`;
-
   resultsContainer.classList.remove('hidden');
-});
+};
+
+const calculateMonthlyIncomeTax = function (taxableIncome) {
+  return incomeTax.calculateAnnualIncomeTax(taxableIncome) / 12;
+};
+
+const calculateMonthlyNationalInsurance = function (annualIncome) {
+  return nationalInsurance.calculateMonthlyNationalInsurance(annualIncome);
+};
