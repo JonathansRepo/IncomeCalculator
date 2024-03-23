@@ -84,6 +84,27 @@ h1 {
   margin-left: 30px;
 }
 
+.money-saving-expert:link {
+  color: #1098ad;
+  text-decoration: none;
+}
+
+.money-saving-expert:visited {
+  /* color: #777; */
+  color: #1098ad;
+}
+
+.money-saving-expert:hover {
+  color: orangered;
+  font-weight: bold;
+  text-decoration: underline orangered;
+}
+
+.money-saving-expert:active {
+  background-color: black;
+  font-style: italic;
+}
+
 /* Calculate */
 .calculate {
   display: grid;
