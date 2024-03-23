@@ -1,7 +1,7 @@
-import { lowerNIThreshold } from './config';
-import { lowerNIRate } from './config';
-import { upperNIThreshold } from './config';
-import { upperNIRate } from './config';
+import { lowerNIThreshold } from './config.js';
+import { lowerNIRate } from './config.js';
+import { upperNIThreshold } from './config.js';
+import { upperNIRate } from './config.js';
 
 export class NationalInsurance {
   calculateMonthlyNationalInsurance = function (grossAnnualIncome) {

@@ -1,0 +1,184 @@
+/*
+SPACING SYSTEM (px)
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+
+FONT SIZE SYSTEM (px)
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+*/
+
+/* General */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+h2 {
+  font-family: 'Nunito', sans-serif;
+  font-size: 36px;
+  font-weight: 800;
+
+  color: #1864ab;
+  padding-left: 40px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+section {
+  margin-bottom: 50px;
+}
+/* Header */
+
+header {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  justify-content: center;
+  align-items: center;
+  background-color: #1864ab;
+  margin-top: 30px;
+  margin-bottom: 50px;
+  height: 200px;
+}
+
+h1 {
+  font-family: 'Nunito', sans-serif;
+  font-style: italic;
+  font-size: 62px;
+  font-weight: 800;
+  text-decoration: underline;
+  letter-spacing: 8px;
+  color: white;
+  justify-self: start;
+  padding-left: 20px;
+  line-height: 1.2;
+}
+
+.calculator-image {
+  width: 200px;
+  height: 200px;
+  justify-self: end;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+/* body */
+
+/* Instructions */
+.instructions {
+  padding-left: 40px;
+  font-family: 'Mako', sans-serif;
+  font-size: 24px;
+}
+
+.instructions-list {
+  list-style: square;
+}
+
+.instructions-list li {
+  margin-bottom: 10px;
+  margin-left: 30px;
+}
+
+/* Calculate */
+.calculate {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.calculate-title {
+  color: white;
+}
+
+.input-form {
+  padding-left: 40px;
+  background-color: rgb(24, 100, 171, 0.9);
+  border-radius: 10px;
+  color: white;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.15);
+}
+
+.input-controls {
+  font-size: 24px;
+  font-family: 'Mako', sans-serif;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: start;
+  gap: 20px;
+}
+
+input {
+  height: 35px;
+  width: 120px;
+  border-radius: 5px;
+  justify-self: end;
+  font-size: 20px;
+  text-align: center;
+  margin-right: 30px;
+  background-color: #e9ecef;
+}
+
+button {
+  width: 120px;
+  height: 40px;
+  border-radius: 5px;
+  justify-self: end;
+  grid-row: 3;
+  grid-column: 2;
+  background-color: white;
+  color: #1864ab;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-right: 30px;
+  margin-bottom: 30px;
+}
+
+/* Results */
+
+p {
+  margin-bottom: 20px;
+}
+
+.results-container {
+  padding-left: 40px;
+  font-family: 'Mako', sans-serif;
+  font-size: 24px;
+  line-height: 1.5;
+}
+
+.results {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  width: 800px;
+  gap: 20px;
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.monthly-gross-income-result {
+  color: #1864ab;
+  justify-self: end;
+}
+
+.monthly-income-tax-result {
+  color: #c92a2a;
+  justify-self: end;
+}
+
+.monthly-NI-result {
+  color: #c92a2a;
+  justify-self: end;
+}
+
+.monthly-net-result {
+  color: #37b24d;
+  justify-self: end;
+}

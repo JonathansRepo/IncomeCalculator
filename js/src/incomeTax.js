@@ -1,10 +1,10 @@
-import { personalAllowance } from './config';
-import { basicRate } from './config';
-import { higherRateThresholdStart } from './config';
-import { higherRate } from './config';
-import { additionalThresholdStart } from './config';
-import { additionalRate } from './config';
-import { personalAllowanceAdjustmentThreshold } from './config';
+import { personalAllowance } from './config.js';
+import { basicRate } from './config.js';
+import { higherRateThresholdStart } from './config.js';
+import { higherRate } from './config.js';
+import { additionalThresholdStart } from './config.js';
+import { additionalRate } from './config.js';
+import { personalAllowanceAdjustmentThreshold } from './config.js';
 
 export class IncomeTax {
   // There are three tax rates:
